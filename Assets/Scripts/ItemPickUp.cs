@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class ItemPickUp : Interactable {
+public class ItemPickUp : Interactable
+{
 
     public Item item;
 
@@ -12,11 +13,12 @@ public class ItemPickUp : Interactable {
 
     void PickUp()
     {
-        Debug.Log("Pickng up " + item.name);
+        bool wasPickedUp = Inventory.instance.Add(item);
 
-        Inventory.instance.Add(item);
-
-        // Remove it from the scene
-        Destroy(gameObject);
+        if (wasPickedUp)
+        {
+            Debug.Log("Pickng up " + item.name);
+            Destroy(gameObject);
+        }
     }
 }
